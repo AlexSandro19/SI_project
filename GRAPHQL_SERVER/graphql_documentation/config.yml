@@ -1,0 +1,37 @@
+spectaql:
+  logoFile: IMAGE_PATH_HERE
+  # faviconFile: ./test/fixtures/favicon.png
+  displayAllServers: true
+
+introspection:
+  removeTrailingPeriodFromDescriptions: false
+  schemaFile: SCHEMA_PATH_HERE
+  # metadataFile: ./examples/data/metadata.json
+  # dynamicExamplesProcessingModule: ./examples/customizations/examples
+  queryNameStrategy: capitalizeFirst
+  fieldExpansionDepth: 2
+
+  spectaqlDirective:
+    enable: true
+
+extensions:
+  graphqlScalarExamples: true
+
+info:
+  title: GraphQL API Reference for System Integration Project
+  description: This documentation will provide you with the Schema and queries that you can call against our GraphQL server.  
+  contact:
+    name: API Support
+    email: alex155r@stud.kea.dk
+
+servers:
+  - url: http://68.219.99.197:8002/graphql
+    description: Expose Server
+    production: true
+    headers:
+      - name: Authorization
+        example: Bearer <YOUR_TOKEN_HERE>
+        comment: "Your API token that must be included in all API calls.\n
+       --> You need to call login/register endpoint on\n
+       --> http://localhost:8000/register or http://localhost:8000/login\n
+       --> in order to get the Authentification Token"

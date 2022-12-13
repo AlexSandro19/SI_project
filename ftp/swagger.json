@@ -1,0 +1,9 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "FTP Sever",
+      "description": "<h3>The FTP server should be used to upload the **products.db** file. It The FTP server can be accessed on ***40.115.107.130***, port ***8080***.\n\n When logging it, you need to provide the following credentials:\n Username: **radu**\n Password: **admin**\n\n The files need to be uploaded to the **ftproot** folder.</h3>",
+      "version": "1.0"
+    },
+    "host": "40.115.107.130:8080"
+  }

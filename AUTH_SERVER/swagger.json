@@ -1,0 +1,146 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "title": "Authentication Server API",
+      "version": "1.0"
+    },
+    "host": "13.74.136.176:8000",
+    "basePath": "/",
+    "schemes": [
+      "http"
+    ],
+  
+    "paths": {
+      "/register":{
+        "post":{
+          "description":"Lets the user register on the website and be saved in database",
+          "operationId":"post-register",
+          "summary": "User registration",
+          "parameters":[    {
+            "name": "payload",
+            "in": "body",
+            "schema": {
+              "type": "object",
+               "required":["email",  "password", "name"],
+              "properties":{
+              "email": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+              },
+              "example": {
+                  "email": "lars@example.com",
+                  "name": "Lars Larsen",
+                  "password": "lars1234"
+              }
+            },
+            "description": "Request payload should contain email, name and password fields which are all required."
+          }
+            
+        ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": 
+                    "User was succesfully registered. In the response you will receive the success status, user with email and name, and JWT token with its expiration timeframe",
+              "examples": {
+                "application/json": {
+                  "success": true, "user": {"email": "lars@example.com", "name":"Lars Larsen"}, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", "expiresIn": "1h"
+                }
+              }
+            },
+            "401":{
+              "description": "Not all credentials where specified",
+              "examples": {
+                "application/json": { "success": false, "message": "Not all credentials where specified" }
+              }
+            },
+            "409":{
+              "description": "User is already registered",
+              "examples": {
+                "application/json": { "success": false, "message": "User is already registered" }
+              }
+            },
+            "500":{
+              "description": "Internal Server Error",
+              "examples": {
+                "application/json": { "success": false, "message": "Internal Server Error" }
+              }
+            }
+          }
+        }
+      },
+      "/login":{
+        "post":{
+          "description":"Lets the registered user login to the website.",
+          "operationId":"post-login",
+          "summary": "User login",
+          "parameters":[    {
+            "name": "payload",
+            "in": "body",
+            "schema": {
+              "type": "object",
+               "required":["email", "password"],
+              "properties":{
+              "email": {
+                "type": "string"
+              },
+              "password": {
+                "type": "string"
+              }
+              },
+              "example": {
+                  "email": "lars@example.com",
+                  "password": "lars1234"
+              }
+            },
+            "description": "Request payload should contain email and password fields which are required."
+          }
+            
+        ],
+          "consumes": [
+            "application/json"
+          ],
+          "produces": [
+            "application/json"
+          ],
+          "responses": {
+            "200": {
+              "description": 
+                    "User was succesfully logged in. In the response you will receive the success status, user with email and name, and JWT token with its expiration timeframe",
+              "examples": {
+                "application/json": {
+                  "success": true, "user": {"email": "lars@example.com", "name":"Lars Larsen"}, "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c", "expiresIn": "1h"
+                }
+              }
+            },
+            "401":{
+              "description": "User was not found or not all credentials where specified",
+              "examples": {
+                "application/json": { "success": false, "message": "Not all credentials where specified" }, 
+                
+              }
+            },
+            "500":{
+              "description": "Internal Server Error",
+              "examples": {
+                "application/json": { "success": false, "message": "Internal Server Error" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "definitions": {},
+    "tags": []
+  }

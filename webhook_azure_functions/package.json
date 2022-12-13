@@ -1,0 +1,12 @@
+{
+  "name": "webhook_azure_functions",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet...\""
+  },
+  "dependencies": {
+    "@azure/storage-blob": "^12.12.0"
+  }
+}

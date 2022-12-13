@@ -1,0 +1,127 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Update Profile Info API",
+    "version": "1.0"
+  },
+  "host": "68.219.99.197:8002",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+
+  "paths": {
+    "/updateInfo":{
+      "post":{
+        "description":"Updates user profile information and sends an sms to the phone number to alert of the update to the profile. The file parameter should be named 'file' or else the server won't be able to register the file.",
+        "operationId":"post-email-send-invite",
+        "summary": "Updates user profile information",
+        "parameters":[    {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "required":["email",  "phone", "name", "picture_path"],
+            "example": {
+              "email":"validemailaddressinviter@mail.com",
+              "name":"FirstName SecondName",
+              "phone":{
+                "description":"A phone number together with the country code",
+                "value":"4567809834"
+              }
+            }
+          },
+          "description": "Request payload"
+        },{
+          "name:":"picture_path",
+          "in":"formData",
+          "type": "file",
+          "description": "The file to upload."
+          }],
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully updating the profile info, an sms should be received by the old phone number",
+            "examples": {
+              "application/json": {
+                "email": "random@email.com",
+                "name": "Alex Minchev",
+                "picture_path": "https://someroute.net/image-container/Alex-Minchev-6335678246753067-7284949817246937.png",
+                "phone": "4567809834",
+                "updated_at":{ 
+                  "description": "A timestamp of when the update was done in ISO format",
+                  "value":"2022-11-28T23:08:19.800Z"}
+            }
+            }
+          },
+          "500":{
+            "description": "Some internal server error",
+            "examples": {
+              "application/json": {
+                "message": "Internal Server Error has occurred"
+              }
+            }
+          },
+          "401":{
+            "description": "File was not found or sent to the server",
+            "examples": {
+              "application/json": {
+                "message": "File was not found or sent"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/getInfo":{
+      "post":{
+        "description":"Call the endpoint to get all the data that we have about the user -- email, name, phone, image.",
+        "summary": "Get user profile information",
+        "parameters":[    {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "required": ["email"],
+            "example": {
+              "email":"alex@mail.com"
+            }
+          },
+          "description": "Request payload"
+        }],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Return all the data about the user",
+            "examples": {
+              "application/json": {
+                "email": "random@email.com",
+                "name": "Alex Minchev",
+                "picture_path": "https://someroute.net/image-container/Alex-Minchev-6335678246753067-7284949817246937.png",
+                "phone": "4567809834"
+            }
+            }
+          },
+          "500":{
+            "description": "Some internal server error",
+            "examples": {
+              "application/json": {
+                "message": "Internal Server Error has occurred"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "tags": []
+}

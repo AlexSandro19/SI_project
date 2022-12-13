@@ -1,0 +1,23 @@
+{
+  "name": "ftpd",
+  "version": "1.0.0",
+  "description": "",
+  "main": "ftp.js",
+  "dependencies": {
+    "@azure/identity": "^3.1.0",
+    "@azure/storage-blob": "^12.12.0",
+    "dotenv": "^16.0.3",
+    "ftpd": "^0.2.16",
+    "http-server": "^14.1.1",
+    "into-stream": "^3.1.0",
+    "multer": "^1.4.5-lts.1",
+    "ngrok": "^4.3.3",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

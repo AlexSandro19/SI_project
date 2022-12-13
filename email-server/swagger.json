@@ -1,0 +1,59 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Email Server API",
+    "version": "1.0"
+  },
+  "host": "68.219.99.197:8001",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+
+  "paths": {
+    "/sendInvite":{
+      "post":{
+        "description":"Sends an invitation from a sender email to a receiver email",
+        "operationId":"post-email-send-invite",
+        "summary": "Email invitation",
+        "parameters":[    {
+          "name": "body",
+          "in": "body",
+          "schema": {
+            "example": {
+              "inviter_email":"validemailaddressinviter@mail.com",
+              "receiver_email":"validemailaddresssender@mail.com"
+            }
+          },
+          "description": "Request payload"
+        }],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successfully adding someone as a friend and inviting them",
+            "examples": {
+              "application/json": {
+                "message": "Added a friend"
+              }
+            }
+          },
+          "500":{
+            "description": "If user was already invited previosly",
+            "examples": {
+              "application/json": {
+                "message": "User was already invited or added as a friend"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {},
+  "tags": []
+}

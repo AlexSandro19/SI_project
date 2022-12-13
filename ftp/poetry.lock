@@ -1,0 +1,20 @@
+[[package]]
+name = "pyftpdlib"
+version = "1.5.7"
+description = "Very fast asynchronous FTP server library"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.extras]
+ssl = ["pyopenssl"]
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.10"
+content-hash = "ad7f5624bc7d122c989172ed6d1340fe844d8146ca6495912b62651518a0ed97"
+
+[metadata.files]
+pyftpdlib = [
+    {file = "pyftpdlib-1.5.7.tar.gz", hash = "sha256:7ea3ce4137db8209af1f6b9ea020590f462c63ed7c7a1240bd596e4d3a7b656e"},
+]
